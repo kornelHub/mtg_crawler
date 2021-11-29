@@ -7,10 +7,13 @@ def main():
     chrome_options = webdriver.ChromeOptions()
     chrome_options.headless = True
     driver = webdriver.Chrome(f'{os.getcwd()}/chromedriver.exe', options=chrome_options)
+    # If you want to get oracle version of card change in base_url printed=true > printed=false
     base_url = 'https://gatherer.wizards.com/Pages/Card/Details.aspx?printed=true&multiverseid={}'
     f = open("./output.csv", "w")
     writer = csv.writer(f, delimiter=';')
 
+    # Alpha set cards have number from 1 to 295
+    # If you want to get cards from other set, you must check it manually and change numbers in range below
     for i in range(1, 296):
         print(i)
         driver.get(base_url.format(i))
